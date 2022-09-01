@@ -1,1 +1,1 @@
-# java_app
+# spring_project
