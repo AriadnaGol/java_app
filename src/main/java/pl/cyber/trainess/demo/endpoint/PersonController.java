@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.cyber.trainess.demo.dto.KluczSortowaniaEnum;
 import pl.cyber.trainess.demo.dto.PersonDTO;
 import pl.cyber.trainess.demo.dto.PersonRequest;
 import pl.cyber.trainess.demo.service.PersonService;
+
+import java.util.List;
 
 /**
  * @author Mariusz Tański
@@ -28,7 +31,7 @@ public class PersonController {
   private final PersonService service;
 
 
-  @GetMapping("/person")
+  @PostMapping("/person")
   public PersonDTO getPerson(@RequestBody final PersonRequest request) {
     return service.getPerson(request);
   }
@@ -70,4 +73,26 @@ public class PersonController {
 //  Utworzyć metody REST do Tworzenia użytkownika, zmiany jest danych oraz jego pobierania.
 
 //  Imie, nazwisko, date urodzenia, miasto zamieszkania oraz Płeć.
+
+
+
+  //region zadanie12
+    /*
+      Wykonaj createPerson z PersonController aby utworzyć 6 różnych osób (przy użyciu Postman),
+       następnie
+      napisz program, który z kolekcji typu List posiadającej
+      6 różnych osób(w oparciu o poprzednie zadanie)
+      posortuje ich względem wskazanego klucza (np. miasta, datyUrodzenia, nazwiska lub imienia).
+      Po czym zostanie zwrócona posortowana lista do użytkownika.
+    */
+
+  @GetMapping("/zadanie12")
+  public List<PersonDTO> zadanie12(
+      @RequestParam("klucz") final KluczSortowaniaEnum klucz)
+  {
+    return service.zadanie12(klucz);
+  }
+
+
+  //endregion
 }

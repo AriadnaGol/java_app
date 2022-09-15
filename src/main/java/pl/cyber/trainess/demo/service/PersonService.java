@@ -1,16 +1,15 @@
 package pl.cyber.trainess.demo.service;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.cyber.trainess.demo.dto.ImieDTO;
+import pl.cyber.trainess.demo.dto.KluczSortowaniaEnum;
 import pl.cyber.trainess.demo.dto.Person;
 import pl.cyber.trainess.demo.dto.PersonDTO;
 import pl.cyber.trainess.demo.dto.PersonRequest;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Mariusz Tański
@@ -92,5 +91,98 @@ public class PersonService {
         element.setMiasto(request.getMiasto());
       }
     }
+  }
+
+  public List<PersonDTO> zadanie12(final KluczSortowaniaEnum klucz) {
+   /*
+      Wykonaj createPerson z PersonController aby utworzyć 6 różnych osób (przy użyciu Postman),
+       następnie
+      napisz program, który z kolekcji typu List posiadającej
+      6 różnych osób(w oparciu o poprzednie zadanie)
+      posortuje ich względem wskazanego klucza (np. miasta, datyUrodzenia, nazwiska lub imienia).
+      Po czym zostanie zwrócona posortowana lista do użytkownika.
+   */
+
+    List<PersonDTO> resultPersonList = new ArrayList<>();
+
+    for (Person ele : personList) {
+      resultPersonList.add(PersonDTO.builder()
+              .imie(ele.getImie())
+              .dataUrodzenia(ele.getDataUrodzenia())
+              .miasto(ele.getMiasto())
+              .plec(ele.getPlec())
+              .nazwisko(ele.getNazwisko())
+          .build());
+    }
+
+    if(klucz.equals(KluczSortowaniaEnum.DATA)) {
+      resultPersonList.sort(Comparator.comparing(PersonDTO::getDataUrodzenia));
+// alternatywa
+// resultPersonList.sort(Comparator.comparing(personDTO -> personDTO.getDataUrodzenia()));
+    } else if(klucz.equals(KluczSortowaniaEnum.IMIE)) {
+      resultPersonList.sort(Comparator.comparing(PersonDTO::getImie));
+    } else if(klucz.equals(KluczSortowaniaEnum.NAZWISKO)) {
+      resultPersonList.sort(Comparator.comparing(PersonDTO::getNazwisko));
+    } else if(klucz.equals(KluczSortowaniaEnum.MIASTO)) {
+      resultPersonList.sort(Comparator.comparing(PersonDTO::getMiasto));
+    }
+
+    return resultPersonList;
+  }
+
+  public List<PersonDTO> zadanie12b(final KluczSortowaniaEnum klucz) {
+
+    List<PersonDTO> resultPersonList = new ArrayList<>();
+
+    for (Person ele : personList) {
+      resultPersonList.add(PersonDTO.builder()
+          .imie(ele.getImie())
+          .dataUrodzenia(ele.getDataUrodzenia())
+          .miasto(ele.getMiasto())
+          .plec(ele.getPlec())
+          .nazwisko(ele.getNazwisko())
+          .build());
+    }
+
+    switch (klucz) {
+      case DATA:
+        resultPersonList.sort(Comparator.comparing(PersonDTO::getDataUrodzenia));
+        break;
+      case IMIE:
+        resultPersonList.sort(Comparator.comparing(PersonDTO::getImie));
+        break;
+      case MIASTO:
+        resultPersonList.sort(Comparator.comparing(PersonDTO::getMiasto));
+        break;
+      case NAZWISKO:
+        resultPersonList.sort(Comparator.comparing(PersonDTO::getNazwisko));
+        break;
+    }
+
+    return resultPersonList;
+  }
+
+  public List<PersonDTO> zadanie12c(final KluczSortowaniaEnum klucz) {
+
+    List<PersonDTO> resultPersonList = new ArrayList<>();
+
+    for (Person ele : personList) {
+      resultPersonList.add(PersonDTO.builder()
+          .imie(ele.getImie())
+          .dataUrodzenia(ele.getDataUrodzenia())
+          .miasto(ele.getMiasto())
+          .plec(ele.getPlec())
+          .nazwisko(ele.getNazwisko())
+          .build());
+    }
+
+    switch (klucz) {
+      case DATA -> resultPersonList.sort(Comparator.comparing(PersonDTO::getDataUrodzenia));
+      case IMIE -> resultPersonList.sort(Comparator.comparing(PersonDTO::getImie));
+      case MIASTO -> resultPersonList.sort(Comparator.comparing(PersonDTO::getMiasto));
+      case NAZWISKO -> resultPersonList.sort(Comparator.comparing(PersonDTO::getNazwisko));
+    }
+
+    return resultPersonList;
   }
 }

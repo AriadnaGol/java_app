@@ -349,4 +349,154 @@ restowym nie doszło do jej modyfikacji.
   }
 
   //endregion
+
+  //region Zadanie10
+  /*
+  * Za pomocą instrukcji pętli for dla danych wartości x zmieniających się od 0 do 10 obliczymy wartość funkcji y = 3x
+  * */
+
+  @GetMapping("/zadanie10a")
+  public String zadanie10a() {
+    return kalkulatorService.zadanie10a();
+  }
+
+  //endregion
+
+  //region zadanie10b
+  /*
+   * Za pomocą instrukcji pętli do ... while dla danych wartości x zmieniających się od 0 do 10
+   *  obliczymy wartość funkcji y = 3x
+   * */
+
+  @GetMapping("/zadanie10b")
+  public String zadanie10b() {
+    return kalkulatorService.zadanie10b();
+  }
+  //
+
+  //region zadanie10c
+  /*
+   * Za pomocą instrukcji pętli while dla danych wartości x zmieniających się od 0 do 10
+   *  obliczymy wartość funkcji y = 3x
+   * */
+
+  @GetMapping("/zadanie10c")
+  public String zadanie10c() {
+    return kalkulatorService.zadanie10c();
+  }
+
+  //endregion
+
+  //region Zadanie11a
+  /*
+    Napisać program, który przy pomocy pętli for przekaże nam wyniki tabliczki mnożenia od 1 do 100
+    Potrzebujemy 2 pętle for
+    Parametr 1 - 10;
+   */
+
+/*
+Program wyświetla tabliczkę mnożenia dla liczb od 1 do 100.
+1   2 	3 	4	  5	  6	  7	  8	  9	  10
+2	  4 	6 	8	  10	12	14	16	18	20
+3	  6 	9 	12	15	18	21	24	27	30
+4	  8 	12	16	20	24	28	32	36	40
+5	  10	15	20	25	30	35	40	45	50
+6	  12	18	24	30	36	42	48	54	60
+7	  14	21	28	35	42	49	56	63	70
+8	  16	24	32	40	48	56	64	72	80
+9	  18	27	36	45	54	63	72	81	90
+10	20	30	40	50	60	70	80	90	100
+*/
+
+  /*
+  for(i){ //wiersze
+    for(j) { //kolumny
+      //obliczenie mnożenia oraz tab
+    }
+    new line
+  }
+   */
+
+  @GetMapping("/zadanie11a")
+  public String zadanie11a() {
+    return kalkulatorService.zadanie11a();
+  }
+
+  //endregion
+
+  //region Zadanie11a
+  /*
+    Napisać program, który przy pomocy pętli do ... while przekaże nam wyniki tabliczki mnożenia od 1 do 100
+
+    2 pętle do while
+
+    do {
+      //ustawienie wartości parametru dla kolumny
+      do {
+        // mnozenie
+        // inkrementacja dla kolumny
+      } while()
+
+      // new line
+      // inkrementację dla wierszy
+
+    } while()
+   */
+
+  @GetMapping("/zadanie11b")
+  public String zadanie11b() {
+    return kalkulatorService.zadanie11b();
+  }
+
+  //endregion
+//region Zadanie11c
+  /*
+    Napisać program, który przy pomocy pętli while przekaże nam wyniki tabliczki mnożenia od 1 do 100
+
+    2 pętle while
+
+  while () { //wiersze
+  //pierwotne ustawienie parametru dla kolumny
+    while() { // kolumny
+    //mnozenie
+    //inkrementacja klumny
+    }
+  //new line
+  //inkrementacja dla wierszy
+  }
+*/
+
+  @GetMapping("/zadanie11c")
+  public String zadanie11c() {
+    return kalkulatorService.zadanie11c();
+  }
+
+  //endregion
+
+
+
+
+
+
+
+  //region ZADANIE DOMOWE
+  /*
+zadanie
+  Proszę zadanie 10 (a, b, c) przerobić tak, aby można było z zewnątrz podać parametr x oraz parametr do kiedy nasza pętla ma się wykonywać
+  Proszę aby nie wzorować się na dostępnych metodach.
+
+
+Zadania dla chętnych:
+1)
+Napisz program, który oblicza wartość x z równania ax+b = c. Wartości a, b i c należy podać poprzez PathVariable, RequestParam lub RequestBody.
+Należy zabezpieczyć program na wypadek sytuacji, kiedy wprowadzona wartość 'a' będzie równa zero. Dla zmiennych a, b, c oraz x należy
+przyjąć format wyświetlania ich na ekranie z dokładnością do dwóch miejsc
+po przecinku
+
+2)
+Napisz program, który za pomocą instrukcji (for, do ... while oraz while, tzn trzy różne rozwiązania)
+znajduje największą i najmniejszą liczbę ze zbioru 'n' wylosowanych liczb całkowitych od 0 do 100
+oraz oblicza średnią ze wszystkich wylosowanych liczb
+  */
+  //endregion
 }

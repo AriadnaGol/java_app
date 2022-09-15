@@ -182,4 +182,145 @@ public class KalkulatorService {
       return "Dwa pierwiastki. Wynik x1: " + df.format(x1) + " x2: " + df.format(x2);
     }
   }
+
+  public String zadanie10a() {
+//    Integer y = 0;
+//
+//    String result = "Program oblicza wartość funkcji y = 3x, dla x zmieniającego się od 0 do 10.\n";
+//
+//    for(int x = 0; x <= 10; x++) {
+//      y = 3*x;
+//      result += "x = " + x + "\t " + "y = " + y + "\n";
+//    }
+//
+//    return result;
+
+    Integer y = 0;
+
+    StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y = 3x, dla x zmieniającego się od 0 do 10.\n");
+
+    for(int x = 0; x <= 10; x++) {
+      y = 3*x;
+      result.append("x = ").append(x).append("\t ").append("y = ").append(y).append("\n");
+    }
+
+    return result.toString();
+  }
+
+  public String zadanie10b() {
+    Integer y = 0;
+    Integer x = 0;
+
+    String result = "Program oblicza wartość funkcji y = 3x, dla x zminiającego się od 0 do 10." +
+        "Za pomocą pętli do ... while\n";
+
+    do {
+      y = 3*x;
+      result += "x = " + x + "\t " + "y = " + y + "\n";
+      x++;
+    } while (x<=10);
+
+    return result;
+  }
+
+  public String zadanie10c() {
+
+    Integer y = 0;
+    Integer x = 0;
+
+    String result = "Program oblicza wartość funkcji y=3x, dla x zmieniającego się od 0 do 10.\n" +
+        "Przy pomocy pętli while\n";
+
+    while (x<=10) {
+      y = 3*x;
+//      result += "x = " + x + "\t " + "y = " + y + "\n";
+      result = result + "x = " + x + "\t " + "y = " + y + "\n";
+      x++;
+    }
+
+    return result;
+  }
+
+  public String zadanie11a() {
+    Integer n = 10;
+
+    String result = "Program wyświetlający tabliczkę mnożenia "
+        + "dla liczb od 1 do 100.\n\n";
+
+    for (int wiersz = 1; wiersz <= n; wiersz++) {
+      for (int kolumna = 1; kolumna <= n; kolumna++) {
+        result += wiersz*kolumna + "\t";
+//        result += "\t";
+      }
+
+      result += "\n";
+    }
+
+    return result;
+  }
+
+  public String zadanie11aa() {
+    Integer w = 20;
+    Integer k = 15;
+
+    String result = "Program wyświetlający tabliczkę mnożenia "
+        + "dla liczb od 1 do 100.\n\n";
+
+    for (int wiersz = 1; wiersz <= w; wiersz++) {
+      for (int kolumna = 1; kolumna <= k; kolumna++) {
+        result += wiersz*kolumna + "\t";
+//        result += "\t";
+      }
+
+      result += "\n";
+    }
+
+    return result;
+  }
+
+  public String zadanie11b() {
+    Integer k = 10;
+    Integer w = 20;
+    Integer wiersz = 1;
+    Integer kolumna = 1;
+
+    String result = "Program wyświetla tabliczkę mnożenia "
+        + "dla liczb od 1 do 200.\n Przy użyciu pętli do ... while\n\n";
+
+    do {
+      kolumna = 1;
+      do {
+        result += wiersz * kolumna;
+        result += "\t";
+        kolumna ++;
+      } while (kolumna <= k);
+      result += "\n";
+      wiersz ++;
+    } while (wiersz <= w);
+
+    return result;
+  }
+
+  public String zadanie11c() {
+    Integer k = 10;
+    Integer w = 20;
+    Integer wiersz = 1;
+    Integer kolumna = 1;
+
+    String result = "Program wyświetla tabliczkę mnożenia"
+        + "dla liczb od 1 do 200. \n Przy użyciu pętli while\n\n";
+
+    while (wiersz <= w){
+      kolumna = 1;
+      while (kolumna <= k){
+        result += wiersz*kolumna;
+        result += "\t";
+        kolumna++;
+      }
+      result += "\n";
+      wiersz++;
+    }
+
+    return result;
+  }
 }
