@@ -1,1 +1,2 @@
-# spring_project
+# spring-projekt
+projekt omawiający podstawy spring boot
