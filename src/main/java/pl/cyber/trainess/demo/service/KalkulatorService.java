@@ -1,10 +1,14 @@
 package pl.cyber.trainess.demo.service;
 
 import org.springframework.stereotype.Service;
+import pl.cyber.trainess.demo.dto.IntegerRequest;
 import pl.cyber.trainess.demo.dto.RownanieKwRequest;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * @author Mariusz Tański
@@ -323,4 +327,160 @@ public class KalkulatorService {
 
     return result;
   }
+
+  public String zadanie10d(final IntegerRequest request) {
+
+    Integer y = 0;
+    StringBuilder ressult = new StringBuilder("Program oblicza wartość funkcji y=3x,"
+        + "dla x zmieniającego się od 0 do wartości podanej przez użytkownika. \n");
+
+    for (int x = 0; x <= request.getParametrA(); x++) {
+      y = 3*x;
+
+      ressult.append("x = ").append(x)
+          .append("\t")
+          .append("y = ").append(y)
+          .append("\n");
+    }
+
+    return ressult.toString();
+  }
+
+  public String zadanie10e(final IntegerRequest request) {
+
+    Integer y = 0;
+    Integer x = 0;
+
+    StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y=3x.");
+
+    do {
+
+      y=3*x;
+      result.append("x = ").append(x)
+          .append("\t")
+          .append("y = ").append(y)
+          .append("\n");
+
+      x++;
+
+    } while (x <= request.getParametrA());
+
+    return result.toString();
+  }
+
+  public String zadanie10f(final IntegerRequest request) {
+
+    Integer x = 0;
+
+    StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y=3x.");
+
+    while (x <= request.getParametrA()) {
+      result.append("x = ").append(x)
+          .append("\t")
+          .append("y = ").append(3*x)
+          .append("\n");
+
+      x++;
+    }
+
+    return result.toString();
+  }
+
+  public String zadanie12for(final IntegerRequest request) {
+
+    Random random = new Random();
+    Integer iloscLosowan = request.getParametrA();
+    List<Integer> listaLiczb = new ArrayList<>();
+
+    Integer min = 100;
+    Integer max = 0;
+    Integer suma = 0;
+    Double srednia = 0.0;
+
+    for (int i = 0; i < iloscLosowan; i++) {
+      listaLiczb.add(random.nextInt(100));
+    }
+
+    //region petla for
+    /*for (int i = 0; i < listaLiczb.size(); i++) {
+      Integer element = listaLiczb.get(i);
+
+      suma += element; //alternatywa -> suma = suma + element;
+
+      if(element < min) {
+        min = element;
+      }
+
+      if(element > max) {
+        max = element;
+      }
+    }*/
+    //endregion
+
+    for (Integer element : listaLiczb) {
+      suma += element;
+
+      if(element < min) {
+        min = element;
+      }
+      if(element > max) {
+        max = element;
+      }
+    }
+    srednia = (double) suma / listaLiczb.size();
+    //alternatywa
+//    srednia = Double.valueOf(suma / listaLiczb.size());
+
+    return "Dla listy: " + listaLiczb +
+        " Min: " + min + " Max: " + max +
+        ", natomiast średnia liczby: " + srednia;
+
+    /*
+    "string1" + "string2" -> "string1string2"
+    "string1" + " string2" -> "string1 string2"
+    "string1" + " " + "string2" -> "string1 string2"
+    "string1" + 12345 -> "string112345"
+    12345 + "string1" -> "12345string1"
+     */
+  }
 }
+
+
+
+
+
+
+
+/*
+
+Typy danych:
+Java              PostgreSQL
+
+String            varchar(15) max długość 255  // text
+Integer           integer
+Boolean           boolean
+Double            double precision 2
+byte[]            bytea
+BigDecimal        decimal(p, s)  --- najlepiej używać do struktur aplikacji księgowych
+
+
+
+
+create database [nazwa]; - powoduje utworzenie bazy danych.
+drop database [nazwa]; - powoduje usunięcie bazy danych.
+
+
+create table [nazwa tabeli] (id [typ], nazwa [typ], itd.); - dzięki temu tworzymy tabele.
+insert into [tabela] (kolumny) values (wartości); tworzenie rekordów.
+update [tabela] set nazwa = ''  - do modyfikacji wszystkich rekordów
+update [tabela] set nazwa = '' where id = '';  - do modyfikacji konkretnego rekordu
+delete from [tabela] where id = ''; - usuwanie rekordu.
+SELECT [] FROM [tabela] WHERE id = ''; wyszukujemy konkretny rekord
+select [] FROM [tabela] where nazwa = ''; wyszukujemy rekordy po ich nazwie
+
+select * FROM - pobieramy wszystkie kolumny z tabeli
+select id, nazwa FROM - pobieramy  kolumny id oraz nazwa z tabeli
+
+
+alter table [tabela] ... - polecenia modyfikujące tabele.
+*/

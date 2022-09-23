@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.cyber.trainess.demo.dto.IntegerListRequest;
+import pl.cyber.trainess.demo.dto.IntegerRequest;
 import pl.cyber.trainess.demo.dto.OneStringRequest;
 import pl.cyber.trainess.demo.dto.RownanieKwRequest;
 import pl.cyber.trainess.demo.dto.StringRequest;
@@ -482,21 +483,50 @@ Program wyświetla tabliczkę mnożenia dla liczb od 1 do 100.
   //region ZADANIE DOMOWE
   /*
 zadanie
-  Proszę zadanie 10 (a, b, c) przerobić tak, aby można było z zewnątrz podać parametr x oraz parametr do kiedy nasza pętla ma się wykonywać
+  Proszę zadanie 10 (a, b, c) przerobić tak, aby można było z zewnątrz podać parametr x oraz parametr do kiedy nasza
+   pętla ma się wykonywać
   Proszę aby nie wzorować się na dostępnych metodach.
 
 
 Zadania dla chętnych:
 1)
-Napisz program, który oblicza wartość x z równania ax+b = c. Wartości a, b i c należy podać poprzez PathVariable, RequestParam lub RequestBody.
-Należy zabezpieczyć program na wypadek sytuacji, kiedy wprowadzona wartość 'a' będzie równa zero. Dla zmiennych a, b, c oraz x należy
+Napisz program, który oblicza wartość x z równania ax+b = c. Wartości a, b i c
+należy podać poprzez PathVariable,
+ RequestParam lub RequestBody.
+Należy zabezpieczyć program na wypadek sytuacji, kiedy wprowadzona wartość 'a'
+będzie równa zero. Dla zmiennych
+ a, b, c oraz x należy
 przyjąć format wyświetlania ich na ekranie z dokładnością do dwóch miejsc
 po przecinku
 
+new DecimalFormat("#,##0.00")
+
 2)
-Napisz program, który za pomocą instrukcji (for, do ... while oraz while, tzn trzy różne rozwiązania)
-znajduje największą i najmniejszą liczbę ze zbioru 'n' wylosowanych liczb całkowitych od 0 do 100
+Napisz program, który za pomocą instrukcji (for, do ... while oraz while, tzn trzy różne
+rozwiązania)
+znajduje największą i najmniejszą liczbę ze zbioru 'n' wylosowanych liczb całkowitych
+ od 0 do 100
 oraz oblicza średnią ze wszystkich wylosowanych liczb
   */
   //endregion
+
+  @PostMapping("/zadanie10d")
+  public String zadanie10d(@RequestBody IntegerRequest request) {
+    return kalkulatorService.zadanie10d(request);
+  }
+
+  @PostMapping("/zadanie10e")
+  public String zadanie10e(@RequestBody IntegerRequest request) {
+    return kalkulatorService.zadanie10e(request);
+  }
+
+  @PostMapping("/zadanie10f")
+  public String zadanie10f(@RequestBody IntegerRequest request) {
+    return kalkulatorService.zadanie10f(request);
+  }
+
+  @PostMapping("zadanie12for")
+  public String zadanie12for(@RequestBody IntegerRequest request) {
+    return kalkulatorService.zadanie12for(request);
+  }
 }
