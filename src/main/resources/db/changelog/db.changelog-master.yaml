@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: init
+      author: ariadnag
+      changes:
+        - sqlFile:
+            path: db/changelog/schema/int.sql
+            #..db\changelog\schema.int.sql
+            # db/changelog/schema.int.sql albo ten
+            #..db\changelog\schema.int.sql
