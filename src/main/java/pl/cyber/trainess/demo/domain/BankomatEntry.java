@@ -4,47 +4,58 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import pl.cyber.trainess.demo.dto.BankomatDTO;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
+
+/**
+ * @author Mariusz Tański
+ */
 
 @Getter
 @Builder
 @AllArgsConstructor
-@Entity(name = "BANKOMAT")
 @NoArgsConstructor
+@Entity(name = "BANKOMAT")
 public class BankomatEntry {
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ID", updatable = false, nullable = false)
-    private String id;
 
-    @Column(name = "NAME")
-    private String name;
+  @Id
+  @GeneratedValue(generator = "UUID") //5e4bb5c2-21d1-4732-b5ab-1328236ddbe8
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Column(name = "ID", updatable = false, nullable = false)
+  private String id;
 
-    @Column(name = "SALDO")
-    private BigDecimal saldo;
+  @Setter
+  @Column(name = "NAME")
+  private String name;
 
-    @Column(name = "MIASTO")
-    private String miasto;
+  @Column(name = "SALDO")
+  private BigDecimal saldo;
 
-    @Column(name = "ULICA")
-    private String ulica;
+  @Column(name = "MIASTO")
+  private String miasto;
 
-    @Column(name = "CZY_AKTYWNY")
-    private Boolean czyAktywny;
+  @Column(name = "ULICA")
+  private String ulica;
 
-    public BankomatDTO convertToDTO() {
-        return BankomatDTO.builder()
-                .id(this.id)
-                .name(this.name)
-                .saldo(this.saldo)
-                .miasto(this.miasto)
-                .ulica(this.ulica)
-                .czyAktywny(this.czyAktywny)
-                .build();
-    }
+  @Column(name = "CZY_AKTYWNY")
+  private Boolean czyAktywny;
+
+  public BankomatDTO convertToDTO() {
+
+    return BankomatDTO.builder()
+        .id(this.id)
+        .name(this.name)
+        .saldo(this.saldo)
+        .miasto(this.miasto)
+        .ulica(this.ulica)
+        .czyAktywny(this.czyAktywny)
+        .build();
+  }
 }

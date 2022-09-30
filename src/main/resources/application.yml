@@ -4,40 +4,55 @@ server:
     context-path: /demo
 
 spring:
-    datasource:
-      url: jdbc:postgresql://185.204.217.194:5432/ag_db
-      username: ariadnag
-      password: ag-12345
+  datasource:
+    url: jdbc:postgresql://185.204.217.194:5432/mt_db
+#    url: jdbc:postgresql://185.204.217.194:5432/[nazwa-db]
+#    localhost - baza danych na lokalnych PC
+#    127.0.0.1 - baza danych na lokalnych PC
+#    db.google.com - baza w serwerownie Google
+#    Adres IP Publiczy - adres pod którym jest nasza baza danych
 
-    jpa:
-        hibernate:
-          ddl-auto: validate
-          use-new-id-generator-mappings: true
-          database-platform: org.hibernate.dialect.PostgreSQLDialect
-          show-sql: true
-          properties:
-            hibernate:
-              format_sql: true
-              temp:
-                use_jdbc_metadata_defaults: false
-    liquibase:
-      enabled: true
-      drop-first: false
+#  spring: -> konfiguracja dla Spring Boot'a [ogólnie]
+#  datasource: -> konfiguracja pod połączenie do bazy danych
+#  url: -> podanie ścieżki do serwera DB
+#  jdbc: -> wskazanie użycia sterownika do połączeń z DB
+#  jdbc:postgesql:// -> informacja, który konkretnie sterownik używamy.
+#                 Jednocześnie jest to informacja o protokole połączeniowym. Jak w przypadku
+#                 stron WWW mamy protokół http:// lub https://
+#   185.204.217.194 -> adres IP, pod którym dostępna jest baza danych. Możliwe konfiguracje
+#                    zostały podane wyżej.
+#  5432 -> standardowy port połączeniowy do serwerów z bazą danych PostgreSQL.
+#  Informacja dodatkowa/ciekawostka
+#          W przypadku stron WWW opartych o protokół http port to 80
+#          W przypadku stron WWW opartych o protokół https port to 443
+#  mt_db -> nazwa bazy danych do której mamy dostęp
+#  username: -> login użytkownika do bazy danych
+#  password: -> hasło użytkownika do bazy danych
+  jpa: # otwarcie kontekstu do konfiguracji JPA, czyli mechanizmu wspomagającego
+#        tworzenie zapytań SQL do bazy
+    hibernate: # konfiguracja mechanizmu, który 'rozmawia' z DB poprzez zapytania SQL
+      ddl-auto: validate # konfiguracja sprawdzająca strukturę DB
+      use-new-id-generator-mappings: true # mechanizm dzięki, któremu będziemy generować
+                  #wartości dla id (primary key) naszych tabel
+    database-platform: org.hibernate.dialect.PostgreSQLDialect # ustalenie języka rozmowy z DB
+    show-sql: true # konfiguracja aby zapytania SQL z app zostały wyświetlone w konsoli
+    properties:
+      hibernate:
+        format_sql: true # parametr ma za zadanie ładnie przedstawić zapytanie SQL w konsoli
+        temp:
+          use_jdbc_metadata_defaults: false
+  liquibase:
+    enabled: true # włączamy mechanizm liquibase, aby mógł za nas utworzyć strukturę DB
+    drop-first: false # zanim uruchomi się app to zostanie usunięta struktura DB
+                      # i ponownie założona
 
-    logging:
-      level:
-        org:
-          hibernate:
-            type:
-              descriptor:
-                sql: trace
 
-
-
-
-      # localhost - baza danych na lokalnych pc
-      # 127.0.0.1 - w pc
-      # db.google.pl przyklad
-      # adres IP publiczny
-      # spring:
-      # datasource
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace # dostępne opcje INFO, TRACE, DEBUG
+              # INFO - będzie podstawowa informacja o parametrach w zapytanie SQL
+              # TRACE - informacje o parametrach oraz ich wartościach.

@@ -1,0 +1,22 @@
+select concat('a', 'b', 'c', 'd');
+select concat('admin', 14, '@', 'gmail', '.', 'com');
+select concat('a', 'b', ' ', 'c', 'd');
+select concat('admin', NULL, 'admin');
+
+select 'admin' || ' ' || 'admin' as Result;
+select 'admin' || NULL as result;
+
+select 5 + 3 as result;
+select now() as result;
+
+
+//tworzenie tabeli
+create table szkolenie (
+	id        integer,
+	imie      varchar(255),
+	nazwisko  varchar(255),
+	primary key(id)
+);
+
+//dodanie wartości
+insert into szkolenie (id, imie, nazwisko) values (1, 'Mariusz', 'Tanski');
